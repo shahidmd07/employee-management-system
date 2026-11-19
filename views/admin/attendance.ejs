@@ -1,0 +1,32 @@
+<section class="panel">
+    <h2>Attendance Management</h2>
+    <form class="search" method="get" action="/admin/attendance">
+        <input name="q" value="<%= search %>" placeholder="Search by Employee ID or name">
+        <input type="date" name="date" value="<%= date %>">
+        <input type="month" name="month" value="<%= month %>">
+        <button type="submit">Filter</button>
+    </form>
+    <div class="stats three">
+        <div class="stat"><small>Total Records</small><strong><%= summary.total_days || 0 %></strong></div>
+        <div class="stat"><small>Present</small><strong><%= summary.present_days || 0 %></strong></div>
+        <div class="stat"><small>Incomplete</small><strong><%= summary.incomplete_days || 0 %></strong></div>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Employee ID</th><th>Name</th><th>Date</th><th>Check In</th><th>Check Out</th><th>Status</th></tr></thead>
+            <tbody>
+                <% records.forEach(record => { %>
+                    <tr>
+                        <td><%= record.employee_id %></td>
+                        <td><%= record.full_name %></td>
+                        <td><%= record.attendance_date %></td>
+                        <td><%= record.check_in || '—' %></td>
+                        <td><%= record.check_out || '—' %></td>
+                        <td><%= record.status %></td>
+                    </tr>
+                <% }) %>
+                <% if (!records.length) { %><tr><td colspan="6">No attendance records found.</td></tr><% } %>
+            </tbody>
+        </table>
+    </div>
+</section>

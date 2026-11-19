@@ -1,0 +1,18 @@
+<h1>Admin Dashboard</h1>
+<div class="stats">
+    <div class="stat"><small>Total Employees</small><strong><%= employees %></strong></div>
+    <div class="stat"><small>Departments</small><strong><%= departments %></strong></div>
+    <div class="stat"><small>Designations</small><strong><%= designations %></strong></div>
+    <div class="stat"><small>Active Employees</small><strong><%= active %></strong></div>
+</div>
+<section class="panel">
+    <h2>Quick Actions</h2>
+    <div class="tiles">
+        <a href="/admin/employees/new">Add Employee</a>
+        <a href="/admin/employees?mode=update">Update Employee</a>
+        <a href="/admin/employees">View Employees</a>
+        <a href="/admin/employees?mode=remove">Remove Employee</a>
+        <a href="/admin/leaves">Leave Requests (<%= pending %>)</a>
+        <a href="/admin/attendance">Attendance Management</a>
+    </div>
+</section>

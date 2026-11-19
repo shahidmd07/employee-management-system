@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | EMS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <% if (currentUser) { %>
+        <div class="shell">
+            <aside class="sidebar">
+                <div class="brand">
+                    <span>EMS</span>
+                    <b>Employee Management</b>
+                    <small>Management System</small>
+                </div>
+
+                <nav>
+                    <% if (currentUser.role === 'admin') { %>
+                        <a href="/admin/dashboard">Dashboard</a>
+                        <a href="/admin/employees/new">Add Employee</a>
+                        <a href="/admin/employees?mode=update">Update Employee</a>
+                        <a href="/admin/employees">View Employees</a>
+                        <a href="/admin/employees?mode=remove">Remove Employee</a>
+                        <a href="/admin/leaves">Leave Requests</a>
+                        <a href="/admin/attendance">Attendance Management</a>
+                    <% } else { %>
+                        <a href="/employee/dashboard">Dashboard</a>
+                        <a href="/employee/details">My Details</a>
+                        <a href="/employee/leave/apply">Apply Leave</a>
+                        <a href="/employee/leaves">Leave Request Tracking</a>
+                        <a href="/employee/attendance">My Attendance</a>
+                    <% } %>
+                    <a href="/change-password">Change Password</a>
+                    <form method="post" action="/logout">
+                        <button type="submit">Logout</button>
+                    </form>
+                </nav>
+            </aside>
+
+            <main class="main-area">
+                <header>
+                    <strong><%= title %></strong>
+                    <span><%= currentUser.username %> · <%= currentUser.role %></span>
+                </header>
+
+                <% messages.error.forEach(message => { %>
+                    <div class="alert error"><%= message %></div>
+                <% }) %>
+                <% messages.success.forEach(message => { %>
+                    <div class="alert success" role="status"><%= message %></div>
+                <% }) %>
+
+                <%- body %>
+            </main>
+        </div>
+    <% } else { %>
+        <% messages.error.forEach(message => { %>
+            <div class="alert error"><%= message %></div>
+        <% }) %>
+        <% messages.success.forEach(message => { %>
+            <div class="alert success"><%= message %></div>
+        <% }) %>
+        <%- body %>
+    <% } %>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

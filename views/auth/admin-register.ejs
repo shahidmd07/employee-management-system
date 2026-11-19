@@ -1,0 +1,17 @@
+<section class="auth">
+    <div class="auth-brand">
+        <div class="people">EMS</div>
+        <h1>Admin Setup</h1>
+        <p>Create the one-time administrator account.</p>
+    </div>
+    <div class="auth-form">
+        <h2>Create Admin Account</h2>
+        <form method="post" action="/admin/register">
+            <label>Username<input name="username" required minlength="3"></label>
+            <label>Password<input type="password" name="password" required minlength="8"></label>
+            <label>Confirm Password<input type="password" name="confirmPassword" required></label>
+            <button type="submit">Create Account</button>
+        </form>
+        <small><a href="/login">Back to Login</a></small>
+    </div>
+</section>

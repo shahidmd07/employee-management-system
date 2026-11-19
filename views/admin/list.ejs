@@ -1,0 +1,42 @@
+<section class="panel">
+    <div class="between">
+        <h2>View Employees</h2>
+        <a class="primary" href="/admin/employees/new">Add Employee</a>
+    </div>
+    <form class="search" method="get" action="/admin/employees">
+        <input type="hidden" name="mode" value="<%= mode %>">
+        <input name="q" value="<%= search %>" placeholder="Search by ID, name, email, phone or department">
+        <button type="submit">Search</button>
+    </form>
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>Employee ID</th><th>Name</th><th>Email</th>
+                <th>Department</th><th>Designation</th><th>Phone</th><th>Actions</th>
+            </tr></thead>
+            <tbody>
+                <% employees.forEach(employee => { %>
+                    <tr>
+                        <td><%= employee.employee_id %></td>
+                        <td><%= employee.full_name %></td>
+                        <td><%= employee.email %></td>
+                        <td><%= employee.department %></td>
+                        <td><%= employee.designation %></td>
+                        <td><%= employee.phone %></td>
+                        <td>
+                            <% if (mode === 'view' || mode === 'update') { %>
+                                <a href="/admin/employees/<%= employee.employee_id %>/edit">Update</a>
+                            <% } %>
+                            <% if (mode === 'view' || mode === 'remove') { %>
+                                <form class="inline" method="post" action="/admin/employees/<%= employee.employee_id %>/delete" onsubmit="return confirm('Remove this employee?')">
+                                    <button class="danger" type="submit">Remove</button>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+                <% if (!employees.length) { %><tr><td colspan="7">No employees found.</td></tr><% } %>
+            </tbody>
+        </table>
+    </div>
+</section>

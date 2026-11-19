@@ -1,0 +1,23 @@
+<section class="auth">
+    <div class="auth-brand">
+        <div class="people">EMS</div>
+        <h1>Employee Management System</h1>
+        <p>Manage employee information, leave requests and attendance.</p>
+    </div>
+    <div class="auth-form">
+        <h2>Login to Your Account</h2>
+        <form method="post" action="/login">
+            <label>Username
+                <input name="username" required autocomplete="username">
+            </label>
+            <label>Password
+                <input type="password" name="password" required autocomplete="current-password">
+            </label>
+            <button class="primary" type="submit">Login</button>
+        </form>
+        <small>
+            First time? <a href="/admin/register">Admin Registration</a>
+            or <a href="/employee/register">Employee Registration</a>
+        </small>
+    </div>
+</section>

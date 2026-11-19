@@ -1,0 +1,21 @@
+<h1>My Dashboard</h1>
+<section class="panel hero">
+    <div class="profile-icon">E</div>
+    <h2>Welcome, <%= employee.full_name %></h2>
+    <p><%= employee.designation %> · <%= employee.department %></p>
+    <small>Employee ID: <%= employee.employee_id %></small>
+</section>
+<div class="stats three">
+    <div class="stat"><small>Pending Leaves</small><strong><%= counts.pending || 0 %></strong></div>
+    <div class="stat"><small>Approved Leaves</small><strong><%= counts.approved || 0 %></strong></div>
+    <div class="stat"><small>Declined Leaves</small><strong><%= counts.declined || 0 %></strong></div>
+</div>
+<section class="panel">
+    <h2>Quick Actions</h2>
+    <div class="tiles three">
+        <a href="/employee/details">My Details</a>
+        <a href="/employee/leave/apply">Apply Leave</a>
+        <a href="/employee/leaves">Leave Request Tracking</a>
+        <a href="/employee/attendance">My Attendance</a>
+    </div>
+</section>
